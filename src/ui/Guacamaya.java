@@ -98,34 +98,65 @@ public class Guacamaya {
         unidades = new int[referencias];
 
     }
-
-    public static void solicitarDatos(){
-
-     
-    }
-
-    public static int calcularTotalUnidadesVendidas(){
-
-        return 0;
-
-    }
+    /**
+     * Descripcion: Este metodo le permite al usuario digitar el precio y la cantidad del producto, ademas los almacena en sus arreglos correspondientes
+     * pre: Los arreglos precios y unidades deben estar inicializados
+     * pos: Se guarda la información de precios y unidades del producto
+     */
+    public static void solicitarDatos() {
+            for (int i = 0; i<precios.length; i++) {
+                System.out.println("Ingrese el precio del producto:");
+                precios[i] = reader.nextDouble();
+                
+                System.out.println("Ingrese la cantidad vendida del producto:");
+                unidades[i] = reader.nextInt();
+            }
+        }
+    /**
+     * Descripcion: Este metodo se encarga calcular las unidades totales vendidas y guarda el resultado en la variable totalUni
+     * pre: El arreglo unidades debe estar incializado y con su información correspondiente
+     * pos: Se calcula los unidades totales vendidas 
+     * @return int totalUni resultado de la sumatoria de las unidades vendidas
+     */
+        public static int calcularTotalUnidadesVendidas() {
+            int totalUni = 0;
+            for (int i=0; i<unidades.length; i++) {
+                totalUni += unidades[i];
+            }
+            return totalUni;
+        }
 
     public static double calcularPrecioPromedio(){
-
-        return 0;
-
-    }
-
+            int sumatoria = 0;
+            for (int i=0; i<precios.length; i++) {
+                sumatoria += precios[i];
+            }
+            return sumatoria / precios.length;
+        }  
+    /**
+     * Descripcion: Este metodo permite calcular las ventas totales durante el día 
+     * pre: El arreglo precio debe estar inicializado y con su información correspondiente
+     * pos: Se calcula las ventas totales
+     * @return int totalVen resultado del producto de los precios y unidades 
+     */  
     public static double calcularVentasTotales(){
-
-        return 0;
-
+        int totalVen = 0;
+        for (int i=0; i<precios.length; i++){
+            totalVen += precios[i]*unidades[i];
+        }
+        return totalVen;
     }
 
     public static int consultarReferenciasSobreLimite(double limite){
-
-        return 0;
-
+        int contador = 0;
+        int totalVen = 0;
+        for (int i=0; i<precios.length; i++){
+        totalVen += precios[i]*unidades[i];
+        if (totalVen<limite){
+            contador++;
+        }
+       }
+       return contador;
     }
-
 }
+
